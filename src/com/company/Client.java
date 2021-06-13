@@ -1,6 +1,6 @@
 package com.company;
 
-import static com.company.config.Config.carSegmentNames;
+import static com.company.config.Config.CAR_SEGMENT_NAMES;
 
 public class Client {
     public final String name;
@@ -22,8 +22,35 @@ public class Client {
     }
 
     public boolean isInterestedIn(Vehicle car) {
-        System.out.println("TODO isInterestedIn");
-        return true;
+        if (car.brand.equals(this.favouriteBrands[0]) || car.brand.equals(this.favouriteBrands[1])) {
+            if (this.interestedInCargo == car.isCargo) {
+                boolean isStateOK = false;
+
+                switch(this.toleranceStrength) {
+                    case 0: // tylko sprawne
+                        if (!car.doesNeedFix()) {
+                            isStateOK = true;
+                            break;
+                        }
+                    case 1: // zawieszenie
+                        if (car.isOnlySuspensionBroken()) {
+                            isStateOK = true;
+                            break;
+                        }
+                    case 2: // moze byc uszkodzony
+                        isStateOK = true;
+                        break;
+                }
+
+                if (isStateOK) {
+                    if (car.cargoSpace >= this.cargoCapacity) {
+                        return this.money >= car.value;
+                    }
+                }
+            }
+        }
+
+        return false;
     }
 
     @Override

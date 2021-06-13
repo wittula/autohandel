@@ -9,6 +9,7 @@ public class Player {
 
     public int movesCounter = 0; // liczba ruchów
     public double actualMoneyValue = START_MONEY_VALUE;
+    public List<String> transactionHistory = new ArrayList<>();
 
     public boolean isGameOver() {
         return (actualMoneyValue >= DESTINATION_MONEY_VALUE);
