@@ -201,6 +201,10 @@ public class Vehicle {
             player.transactionHistory.add("[+] Sprzedaż pojazdu + mycie: " + this.brand +
                     " " + (this.isCargo ? "dostawczy" : "osobowy") +
                     ", kwota: " + profit);
+        } else {
+            player.nextMove();
+            showOptionsList();
+            System.out.println("Klient nie był zainteresowany kupnem tego samochodu.");
         }
     }
 

@@ -151,6 +151,13 @@ public class Main {
         showOptionsList();
 
         while (true) {
+            if (player.isGameOver()) {
+                System.out.println("Gratulacje! Udało Ci się ukończyć grę!");
+                System.out.println("Ilość ruchów: " + player.movesCounter);
+                System.exit(0);
+                break;
+            }
+
             option = scanner.nextInt();
 
             switch (option) {
@@ -300,7 +307,57 @@ public class Main {
 
                     break;
                 case 7:
-                    System.out.println("TODO 7");
+                    System.out.println("Wybierz źródło reklamy: ");
+                    System.out.println("[1]: Gazeta (" + AD_NEWSPAPER_COST + ")");
+                    System.out.println("[2]: Internet (" + AD_INTERNET_COST + ")");
+                    System.out.println("[0]: Powrót");
+                    System.out.println("Wpisz numer reklamy, którą chcesz kupić:");
+
+                    option = scanner.nextInt();
+
+                    if (option == 0) {
+                        showOptionsList();
+                        break;
+                    }
+
+                    int newClientsAmount = 0;
+                    int adCost = 0;
+
+                    switch (option) {
+                        case 1:
+                            newClientsAmount = randomize(1, AD_MAX_NEW_NEWSPAPER_CLIENTS);
+                            adCost = AD_NEWSPAPER_COST;
+
+                            break;
+                        case 2:
+                            newClientsAmount = AD_NEW_INTERNET_CLIENTS;
+                            adCost = AD_INTERNET_COST;
+
+                            break;
+                        default:
+                            System.out.println("Podany numer jest nieprawidłowy!");
+                            break;
+                    }
+
+                    if ((adCost > 0) && player.actualMoneyValue >= adCost) {
+                        player.takeMoney(adCost);
+
+                        for (int i = 0; i < newClientsAmount; i++) {
+                            generateClient();
+                        }
+
+                        player.transactionHistory.add("[-] Zakup reklamy: " +
+                            AD_SOURCE_NAMES[option - 1] + ", kwota: " +
+                            adCost);
+
+                        player.nextMove();
+
+                        showOptionsList();
+                        System.out.println("Kupiono reklamę!");
+                        System.out.println("Ilość nowych klientów: " + newClientsAmount);
+
+                    }
+
                     break;
                 case 8:
                     showOptionsList();

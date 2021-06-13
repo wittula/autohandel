@@ -16,6 +16,7 @@ public final class Config {
     public final static int NEW_VEHICLES_AMOUNT_AFTER_TRANSACTION = 3;
     public final static int NEW_CLIENTS_AMOUNT_AFTER_TRANSACTION = 2;
 
+    public final static String[] AD_SOURCE_NAMES = {"gazeta", "internet"};
     public final static int AD_NEWSPAPER_COST = 4000;
     public final static int AD_INTERNET_COST = 1500;
     public final static int AD_MAX_NEW_NEWSPAPER_CLIENTS = 10;
