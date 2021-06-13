@@ -71,6 +71,7 @@ public class Vehicle {
             case 1: // Marian 90% + interwencja Janusza jesli nie pyknie
                 if (fixChance == 1) {
                     player.takeMoney(fixCost);
+                    showOptionsList();
                     System.out.println("Zapłaciłeś mechanikowi " + MECHANICS_NAMES[1] + "owi " + fixCost);
                     System.out.println("jednak " + MECHANICS_NAMES[1] + " niestety nie poradził sobie z problemem.");
                     System.out.println("Trzeba będzie oddać auto do " + MECHANICS_NAMES[0] + "a...");
@@ -96,6 +97,7 @@ public class Vehicle {
                     int destroyOtherPartChance = randomize(1,50); // 2%
 
                     player.takeMoney(fixCost);
+                    showOptionsList();
                     System.out.println("Zapłaciłeś mechanikowi " + MECHANICS_NAMES[2] + "owi " + fixCost);
                     System.out.println("jednak " + MECHANICS_NAMES[2] + " niestety nie poradził sobie z problemem.");
 
@@ -236,9 +238,9 @@ public class Vehicle {
 
 
         return brand + " " + color + " " + carType +
-                "\n\tsegment: " + CAR_SEGMENT_NAMES[segment] +
-                "\n\tprzebieg: " + mileage + "\n\tcena: " + value +
-                "\n\tprzestrzeń ładunkowa: " + (isCargo ? cargoSpace : "nie dotyczy") +
+                " | segment: " + CAR_SEGMENT_NAMES[segment] +
+                " | przebieg: " + mileage + "\n\tcena: " + value +
+                " | przestrzeń ładunkowa: " + (isCargo ? cargoSpace : "nie dotyczy") +
                 "\n\n\t" + brokenParts + "\n";
     }
 }

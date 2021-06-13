@@ -13,8 +13,8 @@ public class Main {
 
     public static void showOptionsList() {
         System.out.println("\n\nAUTOHANDEL - MENU GŁÓWNE");
-        System.out.println("Liczba ruchów: " + player.movesCounter);
-        System.out.println("Stan konta: " + player.actualMoneyValue + "\n--------------------------");
+        System.out.println("Liczba ruchów: " + player.movesCounter +
+                "\n--------------------------");
         System.out.println("\t1) Przeglądaj bazę samochodów do kupienia");
         System.out.println("\t2) Kup samochód");
         System.out.println("\t3) Przeglądaj bazę posiadanych samochodów");
@@ -64,9 +64,9 @@ public class Main {
 
     public static void showMechanicsList(Vehicle car, int partID) {
         
-        System.out.println("[1] Janusz (" + car.getPartFixPrice(partID) * MECHANICS_PRICE_MULTIPLIER[0] + ")"); // 100%
-        System.out.println("[2] Marian (" + car.getPartFixPrice(partID) * MECHANICS_PRICE_MULTIPLIER[1] + ")"); // 90% + interwencja Janusza jeśli nie pyknie
-        System.out.println("[3] Adrian (" + car.getPartFixPrice(partID) * MECHANICS_PRICE_MULTIPLIER[2] + ")"); // 80% + 2% na zniszczenie innej rzeczy
+        System.out.println("[1] (" + MECHANICS_NAMES[0] + car.getPartFixPrice(partID) * MECHANICS_PRICE_MULTIPLIER[0] + ")"); // 100%
+        System.out.println("[2] (" + MECHANICS_NAMES[1] + car.getPartFixPrice(partID) * MECHANICS_PRICE_MULTIPLIER[1] + ")"); // 90% + interwencja Janusza jeśli nie pyknie
+        System.out.println("[3] (" + MECHANICS_NAMES[2] + car.getPartFixPrice(partID) * MECHANICS_PRICE_MULTIPLIER[2] + ")"); // 80% + 2% na zniszczenie innej rzeczy
         System.out.println("[0]: Anulowanie naprawy");
         System.out.println("Wpisz numer mechanika, którego chcesz wybrać:");
     }
@@ -307,13 +307,40 @@ public class Main {
                     System.out.println("Aktualny stan konta: " + player.actualMoneyValue);
                     break;
                 case 9:
-                    System.out.println("TODO 9");
+                    System.out.println("Historia transakcji: ");
+                    System.out.println("----------------------");
+
+                    for (String transaction: player.transactionHistory) {
+                        System.out.println("\t" + transaction);
+                    }
+
+                    showOptionsList();
                     break;
                 case 10:
-                    System.out.println("TODO 10");
+                    System.out.println("Historia napraw: ");
+                    System.out.println("----------------------");
+
+                    for (Vehicle car: player.ownedCarsList) {
+                        System.out.println("["+ car.brand +
+                                " " + (car.isCargo ? "dostawczy" : "osobowy") + "]");
+                        for (String fixHistory : car.fixHistory) {
+                            System.out.println("\t" + fixHistory);
+                        }
+                    }
+
+                    showOptionsList();
                     break;
                 case 11:
-                    System.out.println("TODO 11");
+                    System.out.println("Suma kosztów napraw i mycia: ");
+                    System.out.println("----------------------");
+
+                    for (Vehicle car: player.ownedCarsList) {
+                        System.out.println(car.brand + " " + car.color + " " +
+                                (car.isCargo ? "dostawczy" : "osobowy") + ": " +
+                                car.maintenanceMoney);
+                    }
+
+                    showOptionsList();
                     break;
                 case 0:
                     System.out.println("Dziękuję za grę.");

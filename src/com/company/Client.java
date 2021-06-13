@@ -63,10 +63,10 @@ public class Client {
         };
 
         return name + " " + surname +
-                "\n\ttyp pojazdu: " + carType +
-                "\n\tmarki: " + favouriteBrands[0] + ", " + favouriteBrands[1] +
-                "\n\tpieniądze: " + money +
+                " | typ pojazdu: " + carType +
+                " | marki: " + favouriteBrands[0] + ", " + favouriteBrands[1] +
+                " | pieniądze: " + money +
                 "\n\tprzestrzeń ładunkowa: " + (interestedInCargo ? "min. " + cargoCapacity : "nie dotyczy") +
-                "\n\tdodatkowe uwagi: " + tolerance[toleranceStrength] + "\n";
+                " | dodatkowe uwagi: " + tolerance[toleranceStrength] + "\n";
     }
 }
